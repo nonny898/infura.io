@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="web3.min.js"></script></head>
+<body><script>
+    if (Web3) {
+        const web3 = new Web3(new Web3.providers.HttpProvider(
+            'https://rinkeby.infura.io/v3/8ceea6b4c7a84e49bb81d3622cd58093'));
+        web3.eth.getBlockNumber().then(blockNumber => {
+            document.writeln('Block number = ' + blockNumber + '<br />');
+        }).catch(console.error);
+        web3.eth.getBalance('0xa5FAc6D2e6E1A0AD61CA98c8b4f13D251Ef4B243').then(wei => {
+            const ether = web3.utils.fromWei(wei, 'ether');
+            document.writeln('wei = ' + wei + '<br/>');
+            document.writeln('ether = ' + ether + '<br />');
+        }).catch(console.error);
+    } else {
+        console.error('Cannot find web3');
+    }
+</script></body>
+</html>
